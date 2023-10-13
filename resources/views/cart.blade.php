@@ -29,7 +29,7 @@
                 </thead>
                 <tbody>
                   <tr>
-                    @foreach ($cart as $item) 
+                    @foreach ($cart as $key => $item)
                     <td class="product-thumbnail">
                       <img src="{{asset('storage/image-produk/'.$item->produk->img)}}" alt="Image" class="img-fluid">
                     </td>
@@ -53,11 +53,12 @@
                     </td>
                     {{-- // subtotal = harga * qty ; --}}
                     <td>Rp {{ $item->price * $item->quantity }}</td>
-                    
+                    <td>Rp {{ $subtotal[$key] }}</td>
+
                     {{-- <form action="{{ route('cart.destroy',$item->id) }}" method="POST"> --}}
 
                     {{-- <form action="{{ route('deletecart',$cart->id) }}" method="POST"> --}}
-                    
+
                     {{-- @csrf
                     @method('DELETE') --}}
                     <td><button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>   Delete</button></td>
@@ -117,7 +118,7 @@
                     <span class="text-black">Total</span>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
+                    <strong class="text-black">{{$total}}</strong>
                   </div>
                 </div>
 
